@@ -3,7 +3,7 @@ NAME = ft_ssl
 
 FLAGS = -Wall -Wextra -Werror
 
-FILES = main.c base64.c base64_padding.c des.c core.c keys.c crypt_utils.c utils.c errors.c
+FILES = main.c read.c base64.c base64_padding.c des.c core.c keys.c crypt_utils.c utils.c errors.c
 SRCS = $(addprefix src/, $(FILES))
 OBJ  = $(patsubst %.c,%.o,$(FILES))
 

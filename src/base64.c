@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 16:36:00 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 05:44:31 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/28 10:49:55 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,14 @@ t_uchar	*base64_encode(t_uchar *message, int *len)
 	return (cipher);
 }
 
-t_uchar	*base64_decode(t_uchar *cipher)
+t_uchar	*base64_decode(t_uchar *cipher, int *len)
 {
 	int		i;
-	int		len;
 	t_uchar	*message;
 
 	i = 0;
-	len = ft_strlen((char *)cipher);
-	message = (t_uchar *)ft_strnew(3 * (len / 4));
-	while (i < len / 4)
+	message = (t_uchar *)ft_strnew(3 * (*len / 4) + (*len % 4 - 1));
+	while (i < *len / 4)
 	{
 		message[3 * i + 0] = (revchar(*(cipher + i * 4)) << 2)
 		+ ((revchar(*(cipher + i * 4 + 1)) & 0x30) >> 4);
@@ -57,6 +55,13 @@ t_uchar	*base64_decode(t_uchar *cipher)
 		+ revchar(*(cipher + i * 4 + 3));
 		i++;
 	}
+	if (*len % 4 > 1)
+		message[3 * i + 0] = (revchar(*(cipher + i * 4)) << 2)
+		+ ((revchar(*(cipher + i * 4 + 1)) & 0x30) >> 4);
+	if (*len % 4 == 3)
+		message[3 * i + 1] = (revchar(*(cipher + i * 4 + 1)) << 4)
+		+ (revchar(*(cipher + i * 4 + 2)) >> 2);
+	*len = 3 * (*len / 4) + (*len % 4 - 1);
 	return (message);
 }
 
@@ -70,6 +75,12 @@ int		base64(t_uchar **output)
 	if (g_options.mode == Encrypt)
 		*output = base64_encode(input, &len);
 	else
-		*output = base64_decode(input);
+	{
+		if (len && input[len - 1] == '=')
+			len--;
+		if (len && input[len - 1] == '=')
+			len--;
+		*output = base64_decode(input, &len);
+	}
 	return (len);
 }

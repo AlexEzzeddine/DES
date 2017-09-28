@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 17:30:36 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 05:31:07 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/28 09:49:53 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_uchar	revchar(char ch)
 		ch = 62;
 	else if (ch == '/')
 		ch = 63;
-	else if (ch == '=')
+	else
 		ch = 0;
 	return (ch);
 }

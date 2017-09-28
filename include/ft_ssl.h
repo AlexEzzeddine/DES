@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 03:07:03 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 05:31:54 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/28 10:45:22 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_options
 }				t_options;
 
 t_uchar			*read_all(int fd);
+void			get_options(int argc, char **argv);
 t_ulong			convert_hex_to_bits(char *key);
 t_uchar			revchar(char ch);
 t_ulong			string_to_long64(t_uchar *str);
@@ -52,9 +53,10 @@ void			pad_0(t_uchar *cipher, t_uchar *message);
 void			pad_1(t_uchar *cipher, t_uchar *message);
 void			pad_2(t_uchar *cipher, t_uchar *message);
 t_uchar			*base64_encode(t_uchar *message, int *len);
-t_uchar			*base64_decode(t_uchar *cipher);
+t_uchar			*base64_decode(t_uchar *cipher, int *len);
 int				base64(t_uchar **output);
 
+void			get_ivec(void);
 void			get_key(void);
 char			*normalize_key(char *old_key, int key_size);
 t_ulong			rotate_sub_key(t_ulong key, int shift);
