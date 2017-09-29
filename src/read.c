@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 10:42:46 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 23:34:46 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/29 01:50:55 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,17 @@ void	get_options(int argc, char **argv)
 
 void	get_ivec(void)
 {
-	if ((!ft_strcmp(g_options.cipher, "des-cbc")
+	if (!ft_strcmp(g_options.cipher, "des-cbc")
 		|| !ft_strcmp(g_options.cipher, "des3"))
-		&& !(g_options.ivec))
 	{
-		g_options.ivec = ft_strnew(16);
-		readpassphrase("enter initial vector: ",
-			g_options.ivec, 17, RPP_ECHO_ON);
+		if (!(g_options.ivec))
+		{
+			g_options.ivec = ft_strnew(16);
+			readpassphrase("enter initial vector: ",
+				g_options.ivec, 17, RPP_ECHO_ON);
+		}
+		g_options.ivec = normalize_key(g_options.ivec, 16);
 	}
-	g_options.ivec = normalize_key(g_options.ivec, 16);
 }
 
 void	get_key(void)
