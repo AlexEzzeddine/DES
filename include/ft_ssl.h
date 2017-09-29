@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 03:07:03 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 10:45:22 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/28 21:25:48 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_ulong			permute(t_ulong old_block,
 	const int *permutation_map, int size);
 int				get_bit(t_ulong buf, t_ulong bit);
 void			set_bit(t_ulong *buf, t_ulong bit);
+int				check_padding(t_uchar *cipher, int len);
 
 void			pad_0(t_uchar *cipher, t_uchar *message);
 void			pad_1(t_uchar *cipher, t_uchar *message);

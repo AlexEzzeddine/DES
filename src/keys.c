@@ -6,11 +6,14 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 17:28:55 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 05:19:18 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/28 21:19:54 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
+#include <stdio.h>
+
+extern t_options g_options;
 
 const int g_pc1[56] = {
 	57, 49, 41, 33, 25, 17, 9,
@@ -95,8 +98,10 @@ t_ulong	**create_3_key_schedule(char *key_192)
 	t_ulong	**key_schedules;
 
 	key_schedules = malloc(3 * sizeof(t_ulong *));
-	key_schedules[0] = create_key_schedule(key_192);
+	key_schedules[0] =
+		create_key_schedule(g_options.mode == Encrypt ? key_192 : key_192 + 32);
 	key_schedules[1] = create_key_schedule(key_192 + 16);
-	key_schedules[2] = create_key_schedule(key_192 + 32);
+	key_schedules[2] =
+		create_key_schedule(g_options.mode == Encrypt ? key_192 + 32 : key_192);
 	return (key_schedules);
 }

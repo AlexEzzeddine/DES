@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 16:36:00 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 10:49:55 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/28 21:24:37 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_uchar	*base64_decode(t_uchar *cipher, int *len)
 	t_uchar	*message;
 
 	i = 0;
+	*len = check_padding(cipher, *len);
 	message = (t_uchar *)ft_strnew(3 * (*len / 4) + (*len % 4 - 1));
 	while (i < *len / 4)
 	{
@@ -75,12 +76,6 @@ int		base64(t_uchar **output)
 	if (g_options.mode == Encrypt)
 		*output = base64_encode(input, &len);
 	else
-	{
-		if (len && input[len - 1] == '=')
-			len--;
-		if (len && input[len - 1] == '=')
-			len--;
 		*output = base64_decode(input, &len);
-	}
 	return (len);
 }

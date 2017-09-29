@@ -6,11 +6,20 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 17:30:36 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 09:49:53 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/28 21:26:36 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
+
+int		check_padding(t_uchar *cipher, int len)
+{
+	if (len && cipher[len - 1] == '=')
+		len--;
+	if (len && cipher[len - 1] == '=')
+		len--;
+	return (len);
+}
 
 t_ulong	char_to_hex_digit(char c)
 {

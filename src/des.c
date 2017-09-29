@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 12:29:48 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 11:02:29 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/28 21:26:04 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		des(t_uchar **output)
 	if (g_options.use_base64 && g_options.mode == Decrypt)
 		input = base64_decode(input, &len);
 	if (len % 8)
-		input = (t_uchar *)ft_strrealloc((char *)input, len);
+		input = (t_uchar *)ft_strrealloc((char *)input, 8 - len % 8);
 	len = 8 * (len / 8 + (len % 8 ? 1 : 0));
 	*output = (t_uchar *)ft_strnew(len);
 	if (!ft_strcmp(g_options.cipher, "des")
@@ -100,9 +100,12 @@ void	des_3(t_uchar *message, t_uchar **cipher,
 		c = process_block(m, key_schedules[0], g_options.mode);
 		m = process_block(c, key_schedules[1], !g_options.mode);
 		c = process_block(m, key_schedules[2], g_options.mode);
+		if (g_options.mode == Encrypt)
+			iv = c;
+		else if (i > 0)
+			iv = string_to_long64((t_uchar *)message + 8 * (i - 1));
 		if (g_options.mode == Decrypt)
 			c ^= iv;
-		iv = g_options.mode == Encrypt ? c : m;
 		long64_to_string(*cipher + 8 * i, c);
 		i++;
 	}
