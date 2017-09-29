@@ -6,12 +6,11 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 17:28:55 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 21:19:54 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/28 23:53:37 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
-#include <stdio.h>
 
 extern t_options g_options;
 
