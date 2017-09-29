@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 17:28:55 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 23:53:37 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/29 02:31:23 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	*normalize_key(char *old_key, int key_size)
 
 	i = 1;
 	len = ft_strlen(old_key);
+	if (!len)
+		return (ft_strnew(key_size));
 	new_key = old_key;
 	if (len < key_size)
 	{

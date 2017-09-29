@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/10 03:06:21 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 10:50:03 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/29 02:25:47 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int		main(int argc, char **argv)
 	else
 		len = des(&output);
 	write(g_options.fd_out, output, len);
+	close(g_options.fd_out);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 10:42:46 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/29 01:50:55 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/29 02:08:36 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	get_options(int argc, char **argv)
 		else if (!ft_strcmp(argv[i], "-i"))
 			g_options.fd_in = open(argv[++i], O_RDONLY);
 		else if (!ft_strcmp(argv[i], "-o"))
-			g_options.fd_out = open(argv[++i], O_WRONLY);
+			g_options.fd_out = open(argv[++i], O_WRONLY | O_CREAT, 0666);
 		else if (!ft_strcmp(argv[i], "-k"))
 			g_options.key = argv[++i];
 		else if (!ft_strcmp(argv[i], "-v"))
