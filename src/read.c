@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 10:42:46 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 11:01:04 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/09/28 23:34:46 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	get_ivec(void)
 		readpassphrase("enter initial vector: ",
 			g_options.ivec, 17, RPP_ECHO_ON);
 	}
+	g_options.ivec = normalize_key(g_options.ivec, 16);
 }
 
 void	get_key(void)
