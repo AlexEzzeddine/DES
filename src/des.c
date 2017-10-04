@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/14 12:29:48 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/29 02:43:36 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/10/04 01:59:23 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int		des(t_uchar **output)
 
 	get_key();
 	get_ivec();
-	input = read_all(g_options.fd_in);
-	len = ft_strlen((char *)input);
+	input = read_all(g_options.fd_in, &len);
 	if (g_options.use_base64 && g_options.mode == Decrypt)
 		input = base64_decode(input, &len);
 	if (len % 8)

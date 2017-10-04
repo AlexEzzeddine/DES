@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 10:42:46 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/29 02:08:36 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/10/04 02:02:03 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,28 @@
 
 extern t_options g_options;
 
-t_uchar	*read_all(int fd)
+t_uchar	*read_all(int fd, int *len)
 {
 	char	*result;
+	char	*old;
 	char	*buf;
 	int		n;
+	int		count;
 
 	buf = ft_strnew(8);
 	result = NULL;
-	n = read(fd, buf, 0);
+	count = 0;
 	while ((n = read(fd, buf, 8)) > 0)
 	{
-		result = ft_strfjoin(result, buf);
+		old = result;
+		result = ft_strnew(count + n + 1);
+		ft_memcpy(result, old, count);
+		ft_memcpy(result + count, buf, n);
+		count += n;
+		free(old);
 		ft_bzero(buf, 8);
 	}
+	*len = count;
 	if (n < 0)
 		write(2, strerror(errno), ft_strlen(strerror(errno)));
 	return (t_uchar *)result;

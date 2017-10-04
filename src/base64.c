@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 16:36:00 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/28 21:24:37 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/10/04 01:36:20 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ int		base64(t_uchar **output)
 	int		len;
 	t_uchar	*input;
 
-	input = read_all(g_options.fd_in);
-	len = ft_strlen((char *)input);
+	input = read_all(g_options.fd_in, &len);
 	if (g_options.mode == Encrypt)
 		*output = base64_encode(input, &len);
 	else

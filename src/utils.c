@@ -6,7 +6,7 @@
 /*   By: aezzeddi <aezzeddi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 17:30:36 by aezzeddi          #+#    #+#             */
-/*   Updated: 2017/09/29 02:46:20 by aezzeddi         ###   ########.fr       */
+/*   Updated: 2017/10/04 01:59:06 by aezzeddi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int		check_padding(t_uchar *cipher, int len)
 {
-	if (len && cipher[len - 1] == '\n')
-		len--;
 	if (len && cipher[len - 1] == '=')
 		len--;
 	if (len && cipher[len - 1] == '=')
